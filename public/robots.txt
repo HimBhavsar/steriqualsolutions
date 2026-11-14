@@ -1,0 +1,10 @@
+# SteriQual Solutions Pvt. Ltd. — crawl policy
+# Content-Signal: search = may appear in search results; ai-input = may be used live to answer
+# questions (with attribution); ai-train = may not be used to train AI models.
+
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+Disallow: /md/
+
+Sitemap: https://steriqualsolutions.com/sitemap.xml
