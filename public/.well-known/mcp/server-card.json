@@ -1,0 +1,51 @@
+{
+  "name": "com.steriqualsolutions/website",
+  "title": "SteriQual Solutions",
+  "description": "Company information, GMP and cleanroom qualification services, and enquiry submission for SteriQual Solutions Pvt. Ltd., Ahmedabad, India.",
+  "version": "1.0.0",
+  "websiteUrl": "https://steriqualsolutions.com",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://steriqualsolutions.com/mcp"
+    }
+  ],
+  "endpoint": "https://steriqualsolutions.com/mcp",
+  "transport": "streamable-http",
+  "supportedProtocolVersions": [
+    "2025-11-25",
+    "2025-06-18",
+    "2025-03-26"
+  ],
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {},
+    "prompts": {}
+  },
+  "authentication": {
+    "required": false
+  },
+  "tools": [
+    {
+      "name": "get_company_info",
+      "description": "Company profile, sectors, leadership, regulatory experience and contact routes."
+    },
+    {
+      "name": "list_services",
+      "description": "Services with descriptions, optionally filtered by pharmaceutical, cleanroom or consumables."
+    },
+    {
+      "name": "submit_enquiry",
+      "description": "Send an enquiry to the SteriQual team; the user receives a confirmation email."
+    }
+  ],
+  "icons": [
+    {
+      "src": "https://steriqualsolutions.com/icon-512.png",
+      "sizes": "512x512",
+      "mimeType": "image/png"
+    }
+  ]
+}
