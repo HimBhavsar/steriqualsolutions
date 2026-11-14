@@ -1,19 +1,18 @@
-import { company, siteUrl, siteDescription, pharma, cleanroom, supply, team } from "../site";
+import { company, mapLink, siteUrl, siteDescription, pharma, cleanroom, supply, team } from "../site";
 
 const ORG_ID = `${siteUrl}/#organization`;
 const SITE_ID = `${siteUrl}/#website`;
 
 function contactPoints() {
-  const point: Record<string, unknown> = {
+  return company.phones.map((telephone) => ({
     "@type": "ContactPoint",
-    contactType: "sales",
+    contactType: "customer service",
+    telephone,
+    email: company.email,
     url: `${siteUrl}/contact-us`,
     areaServed: "Worldwide",
     availableLanguage: ["English", "Hindi", "Gujarati"],
-  };
-  if (company.email) point.email = company.email;
-  if (company.phone) point.telephone = company.phone;
-  return [point];
+  }));
 }
 
 /** Organization + local business + website: rendered on every page. */
@@ -23,6 +22,7 @@ export function siteGraph() {
     "@type": ["Organization", "ProfessionalService"],
     "@id": ORG_ID,
     name: company.name,
+    legalName: company.legalName,
     alternateName: "SteriQual",
     url: siteUrl,
     logo: { "@type": "ImageObject", url: `${siteUrl}/icon-512.png`, width: 512, height: 512 },
@@ -31,7 +31,8 @@ export function siteGraph() {
     slogan: "Your partner in compliance",
     address: {
       "@type": "PostalAddress",
-      ...(company.address ? { streetAddress: company.address } : {}),
+      streetAddress: company.streetAddress,
+      postalCode: company.postalCode,
       addressLocality: company.locality,
       addressRegion: company.region,
       addressCountry: company.country,
@@ -51,8 +52,9 @@ export function siteGraph() {
     contactPoint: contactPoints(),
     employee: team.map((p) => ({ "@id": `${siteUrl}/about-us#${p.initials.toLowerCase()}` })),
   };
-  if (company.email) org.email = company.email;
-  if (company.phone) org.telephone = company.phone;
+  org.email = company.email;
+  org.telephone = company.phones[0];
+  org.hasMap = mapLink;
   if (sameAs.length) org.sameAs = sameAs;
 
   return [

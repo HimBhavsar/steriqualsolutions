@@ -101,7 +101,7 @@ export default function Services() {
         <div className="wrap">
           <header className="clean-head">
             <div>
-              <p className="svc-sector">Semiconductor and cleanroom</p>
+              <p className="svc-sector">Cleanroom for Semiconductor and PharmaSuticals</p>
               <h2 id="clean-title" className="display">{cleanroom.title}</h2>
             </div>
             <p>{cleanroom.short}</p>

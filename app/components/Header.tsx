@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { nav } from "../site";
+import { nav, company, telHref } from "../site";
 
 export default function Header() {
   const pathname = usePathname();
@@ -29,6 +29,24 @@ export default function Header() {
 
   return (
     <header className={`site-header${solid ? " is-solid" : ""}${open ? " is-open" : ""}`}>
+      <div className="topbar">
+        <div className="wrap topbar-row">
+          <a href={`mailto:${company.email}`} className="topbar-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M4 7l8 6 8-6" /></svg>
+            {company.email}
+          </a>
+          {company.phones.map((p) => (
+            <a key={p} href={telHref(p)} className="topbar-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></svg>
+              {p}
+            </a>
+          ))}
+          <span className="topbar-item topbar-place">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z" /><circle cx="12" cy="9.5" r="2.5" /></svg>
+            Navrangpura, Ahmedabad
+          </span>
+        </div>
+      </div>
       <div className="wrap header-row">
         <Link className="brand" href="/" aria-label="SteriQual Solutions, home">
           <img className="brand-light" src="/brand/logo-full-white.svg" alt="" width="180" height="50" />
@@ -56,9 +74,6 @@ export default function Header() {
         </button>
       </div>
       <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile" hidden={!open}>
-        <Link href="/" aria-current={pathname === "/" ? "page" : undefined}>
-          Home
-        </Link>
         {nav.map((n) => (
           <Link key={n.href} href={n.href} aria-current={pathname === n.href ? "page" : undefined}>
             {n.label}
@@ -67,6 +82,14 @@ export default function Header() {
         <Link className="btn btn-ribbon" href="/contact-us">
           Get expert advice
         </Link>
+        <div className="mobile-contact">
+          <a href={`mailto:${company.email}`}>{company.email}</a>
+          {company.phones.map((p) => (
+            <a key={p} href={telHref(p)}>
+              {p}
+            </a>
+          ))}
+        </div>
       </nav>
     </header>
   );

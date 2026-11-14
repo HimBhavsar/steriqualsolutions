@@ -4,7 +4,7 @@ import JsonLd from "../components/JsonLd";
 import PageHero from "../components/PageHero";
 import HeroCards, { type HeroCard } from "../components/HeroCards";
 import ContactForm from "./ContactForm";
-import { company, heroPhotos } from "../site";
+import { company, heroPhotos, telHref, mapLink, mapEmbed } from "../site";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -25,6 +25,47 @@ const icon = (d: React.ReactNode) => (
 export default function Contact() {
   const cards: HeroCard[] = [
     {
+      visual: icon(
+        <>
+          <rect x="3" y="5" width="18" height="14" rx="2" {...I} />
+          <path d="M4 7l8 6 8-6" {...I} />
+        </>,
+      ),
+      top: "Email",
+      title: (
+        <span className="card-lines">
+          <a href={`mailto:${company.email}`}>
+            {company.email.split("@")[0]}@<wbr />
+            {company.email.split("@")[1]}
+          </a>
+        </span>
+      ),
+    },
+    {
+      visual: icon(<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" {...I} />),
+      top: "Phone",
+      title: (
+        <span className="card-lines">
+          {company.phones.map((p) => (
+            <a key={p} href={telHref(p)}>
+              {p}
+            </a>
+          ))}
+        </span>
+      ),
+    },
+    {
+      href: "#visit",
+      visual: icon(
+        <>
+          <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z" {...I} />
+          <circle cx="12" cy="9.5" r="2.5" {...I} />
+        </>,
+      ),
+      top: "Office",
+      title: "Navrangpura, Ahmedabad",
+    },
+    {
       href: "#enquiry",
       visual: icon(
         <>
@@ -35,41 +76,7 @@ export default function Contact() {
       top: "Enquiry form",
       title: "Two short steps",
     },
-    {
-      visual: icon(
-        <>
-          <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z" {...I} />
-          <circle cx="12" cy="9.5" r="2.5" {...I} />
-        </>,
-      ),
-      top: "Office",
-      title: company.address || company.city,
-    },
-    {
-      visual: icon(<path d="M4 20h16M6 20V9l6-4 6 4v11M10 20v-5h4v5" {...I} />),
-      top: "We work with",
-      title: "Pharma, semiconductor, consumables & equipment",
-    },
   ];
-  if (company.email)
-    cards.push({
-      href: `mailto:${company.email}`,
-      visual: icon(
-        <>
-          <rect x="3" y="5" width="18" height="14" rx="2" {...I} />
-          <path d="M4 7l8 6 8-6" {...I} />
-        </>,
-      ),
-      top: "Email",
-      title: company.email,
-    });
-  if (company.phone)
-    cards.push({
-      href: `tel:${company.phone.replace(/\s/g, "")}`,
-      visual: icon(<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" {...I} />),
-      top: "Phone",
-      title: company.phone,
-    });
 
   return (
     <>
@@ -80,7 +87,7 @@ export default function Contact() {
           supply solution for your facility.
         </p>
       </PageHero>
-      <HeroCards label="Ways to reach us" items={cards.slice(0, 4)} />
+      <HeroCards label="Ways to reach us" items={cards} />
       <section className="section contact" id="enquiry">
         <div className="wrap">
           <div className="contact-head">
@@ -93,6 +100,43 @@ export default function Contact() {
           <Suspense fallback={<div className="contact-form" />}>
             <ContactForm />
           </Suspense>
+        </div>
+      </section>
+      <section className="section visit" id="visit" aria-labelledby="visit-title">
+        <div className="wrap visit-grid">
+          <div className="visit-info">
+            <h2 id="visit-title" className="display">Visit our office</h2>
+            <address>
+              <b>{company.legalName}</b>
+              <br />
+              504 Yash Aqua, Vijay Char Rasta,
+              <br />
+              Navrangpura, Ahmedabad 380009,
+              <br />
+              Gujarat, India
+            </address>
+            <ul className="visit-links">
+              <li>
+                <a href={`mailto:${company.email}`}>{company.email}</a>
+              </li>
+              {company.phones.map((p) => (
+                <li key={p}>
+                  <a href={telHref(p)}>{p}</a>
+                </li>
+              ))}
+            </ul>
+            <a className="btn btn-ribbon" href={mapLink} target="_blank" rel="noopener noreferrer">
+              Get directions
+            </a>
+          </div>
+          <div className="visit-map">
+            <iframe
+              title={`Map showing ${company.legalName}, ${company.address}`}
+              src={mapEmbed}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
       </section>
     </>

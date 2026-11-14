@@ -38,11 +38,6 @@ export default function Home() {
           <span className="hero-note note-filter">HEPA filtration: particles are captured</span>
           <span className="hero-note note-flow">Unidirectional airflow</span>
           <span className="hero-note note-zone">Critical zone</span>
-          <div className="readout" aria-hidden="true">
-            <span>ISO Class 5 limit</span>
-            <b>3,520</b>
-            <span>particles/m³ at ≥ 0.5 µm</span>
-          </div>
         </div>
         <div className="wrap hero-grid">
           <div className="hero-copy">

@@ -3,9 +3,9 @@ import { company, siteUrl, siteDescription, pages, pharma, cleanroom, supply, te
 
 const contactLines = () =>
   [
-    `- Office: ${company.address || company.city}`,
-    company.email && `- Email: ${company.email}`,
-    company.phone && `- Phone: ${company.phone}`,
+    `- Office: ${company.legalName}, ${company.address}`,
+    `- Email: ${company.email}`,
+    `- Phone: ${company.phones.join(", ")}`,
     company.hours && `- Working hours: ${company.hours}`,
     `- Enquiry form: ${siteUrl}/contact-us`,
   ]

@@ -28,12 +28,12 @@ export default function WebMcp() {
         execute: async () =>
           JSON.stringify({
             name: company.name,
-            location: company.address || company.city,
+            location: `${company.legalName}, ${company.address}`,
             website: siteUrl,
             serviceAreas: [pharma.title, cleanroom.title, supply.title],
             regulatoryAuditsFaced: regulators.map((r) => r.code),
             leadership: team.map((p) => `${p.name}, ${p.role}`),
-            contact: { enquiryForm: `${siteUrl}/contact-us`, email: company.email || undefined, phone: company.phone || undefined },
+            contact: { enquiryForm: `${siteUrl}/contact-us`, email: company.email, phones: company.phones },
           }),
       },
       {

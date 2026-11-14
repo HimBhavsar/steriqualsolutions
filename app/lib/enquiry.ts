@@ -78,7 +78,7 @@ function row(label: string, valueHtml: string, shaded = false) {
 }
 
 function layout(title: string, intro: string, rows: string, footer: string) {
-  const phone = company.phone ? ` &middot; ${esc(company.phone)}` : "";
+  const phone = ` &middot; ${company.phones.map(esc).join(" / ")} &middot; <a href="mailto:${company.email}" style="color:#8FD7F2;text-decoration:none;">${company.email}</a>`;
   return `<!doctype html><html><body style="margin:0;padding:0;"><div style="margin:0;padding:24px 12px;background:#F2F6FB;font-family:Arial,Helvetica,sans-serif;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#FFFFFF;border-radius:12px;overflow:hidden;border:1px solid #E1E7F0;">
 <tr><td style="background:#0D1B3D;padding:22px 28px;"><img src="cid:sqlogo" alt="SteriQual Solutions Pvt. Ltd." width="170" style="display:block;border:0;max-width:170px;height:auto;color:#FFFFFF;font-size:20px;font-weight:bold;"></td></tr>

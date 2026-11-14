@@ -58,7 +58,6 @@ export default function LineExplorer() {
             onClick={() => setActive(i)}
             onMouseEnter={() => setActive(i)}
           >
-            <span className="lx-count">{l.count}</span>
             <span className="lx-name">{l.title}</span>
           </button>
         ))}

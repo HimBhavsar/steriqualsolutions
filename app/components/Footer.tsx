@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { company, nav, cleanroom, pharma, supply } from "../site";
+import { company, nav, cleanroom, pharma, supply, telHref, mapLink } from "../site";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -15,7 +15,6 @@ export default function Footer() {
         </div>
         <div className="footer-col">
           <h2>Company</h2>
-          <Link href="/">Home</Link>
           {nav.map((n) => (
             <Link key={n.href} href={n.href}>
               {n.label}
@@ -30,9 +29,24 @@ export default function Footer() {
         </div>
         <div className="footer-col">
           <h2>Reach us</h2>
-          <p>{company.address || company.city}</p>
-          {company.email && <a href={`mailto:${company.email}`}>{company.email}</a>}
-          {company.phone && <a href={`tel:${company.phone.replace(/\s/g, "")}`}>{company.phone}</a>}
+          <address className="footer-address">
+            <b>{company.legalName}</b>
+            <br />
+            504 Yash Aqua, Vijay Char Rasta,
+            <br />
+            Navrangpura, Ahmedabad 380009,
+            <br />
+            Gujarat, India
+          </address>
+          <a href={mapLink} target="_blank" rel="noopener noreferrer">
+            Get directions
+          </a>
+          <a href={`mailto:${company.email}`}>{company.email}</a>
+          {company.phones.map((p) => (
+            <a key={p} href={telHref(p)}>
+              {p}
+            </a>
+          ))}
           {company.linkedin && <a href={company.linkedin}>LinkedIn</a>}
           <Link className="footer-cta" href="/contact-us">
             Send an enquiry

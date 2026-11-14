@@ -3,12 +3,17 @@
 
 export const company = {
   name: "SteriQual Solutions Pvt. Ltd.",
+  legalName: "SteriQual Solutions Private Limited",
   short: "SteriQual",
   city: "Ahmedabad, Gujarat, India",
-  email: "", // e.g. "info@steriqualsolutions.com"
-  phone: "", // e.g. "+91 98XXX XXXXX"
-  whatsapp: "", // digits only with country code, e.g. "9198XXXXXXXX"
-  address: "", // full office address
+  email: "info@steriqualsolutions.com",
+  /** Shown everywhere in this order; the first is the main number. */
+  phones: ["+91 90160 57338", "+91 88664 95014"],
+  whatsapp: "", // digits only with country code, e.g. "919016057338"
+  streetAddress: "504 Yash Aqua, Vijay Char Rasta, Navrangpura",
+  postalCode: "380009",
+  /** Full one-line address. */
+  address: "504 Yash Aqua, Vijay Char Rasta, Navrangpura, Ahmedabad 380009, Gujarat, India",
   hours: "", // e.g. "Monday to Saturday, 9:30 am to 6:30 pm"
   linkedin: "",
   /** Public profiles that prove this is the same business (LinkedIn, Google Business Profile, IndiaMART, Justdial…). */
@@ -17,6 +22,13 @@ export const company = {
   region: "Gujarat",
   country: "IN",
 };
+
+/** tel: link for a displayed phone number. */
+export const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;
+
+/** Google Maps links for the office. */
+export const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${company.legalName}, ${company.address}`)}`;
+export const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(company.address)}&output=embed`;
 
 /** Live site address (no trailing slash). */
 export const siteUrl = "https://steriqualsolutions.com";
@@ -36,6 +48,7 @@ export const pages = [
 ];
 
 export const nav = [
+  { href: "/", label: "Home" },
   { href: "/about-us", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/products", label: "Products" },

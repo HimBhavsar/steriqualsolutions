@@ -68,7 +68,7 @@ function companyInfo() {
     website: siteUrl,
     summary:
       "GMP technical consultation, qualification solutions and training for pharmaceutical, semiconductor and controlled cleanroom environments, plus supply of sterile and depyrogenated laboratory consumables and QC instruments.",
-    location: company.address || company.city,
+    location: `${company.legalName}, ${company.address}`,
     sectors: ["Pharmaceutical and biopharmaceutical", "Semiconductor and microelectronics", "Controlled cleanroom environments", "Sterile and depyrogenated consumables supply chain"],
     experience: ["16+ years industrial QC microbiology and aseptic processing", "12 years pharmaceutical instrumentation engineering"],
     regulatoryAuditsFaced: regulators.map((r) => `${r.code} (${r.name})`),
@@ -76,8 +76,8 @@ function companyInfo() {
     leadership: team.map((p) => ({ name: p.name, role: p.role, qualification: p.credential, experience: p.years, expertise: p.expertise })),
     contact: {
       enquiryForm: `${siteUrl}/contact-us`,
-      ...(company.email ? { email: company.email } : {}),
-      ...(company.phone ? { phone: company.phone } : {}),
+      email: company.email,
+      phones: company.phones,
       ...(company.hours ? { hours: company.hours } : {}),
     },
   };

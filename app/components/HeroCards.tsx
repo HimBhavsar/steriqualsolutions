@@ -11,7 +11,6 @@ export default function HeroCards({ items, label }: { items: HeroCard[]; label: 
           const inner = (
             <>
               <span className="area-visual">{c.visual}</span>
-              <span className="area-count">{c.top}</span>
               <span className="area-label">{c.title}</span>
               {c.href && <span className="area-go" aria-hidden="true" />}
             </>
