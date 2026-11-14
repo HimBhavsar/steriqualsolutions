@@ -64,18 +64,7 @@ export default function Contact() {
       ),
       top: "Office",
       title: "Navrangpura, Ahmedabad",
-    },
-    {
-      href: "#enquiry",
-      visual: icon(
-        <>
-          <path d="M4 5h16v11H8l-4 4z" {...I} />
-          <path d="M8 9h8M8 12h5" {...I} />
-        </>,
-      ),
-      top: "Enquiry form",
-      title: "Two short steps",
-    },
+    }
   ];
 
   return (

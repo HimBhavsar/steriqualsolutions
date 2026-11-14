@@ -17,7 +17,7 @@ export const company = {
   hours: "", // e.g. "Monday to Saturday, 9:30 am to 6:30 pm"
   linkedin: "",
   /** Public profiles that prove this is the same business (LinkedIn, Google Business Profile, IndiaMART, Justdial…). */
-  sameAs: [] as string[],
+  sameAs: ["https://maps.google.com/?cid=7764711894654523777"] as string[],
   locality: "Ahmedabad",
   region: "Gujarat",
   country: "IN",
@@ -26,9 +26,10 @@ export const company = {
 /** tel: link for a displayed phone number. */
 export const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;
 
-/** Google Maps links for the office. */
-export const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${company.legalName}, ${company.address}`)}`;
-export const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(company.address)}&output=embed`;
+export const geo = { latitude: 23.0424177, longitude: 72.5486271 };
+export const mapLink = "https://maps.app.goo.gl/LnQqVQr9prQv1tFd9";
+export const mapPlaceUrl = "https://maps.google.com/?cid=7764711894654523777";
+export const mapEmbed = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1200!2d72.5486271!3d23.0424177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2aa8b5dcad780921%3A0x6bc1cc5438221981!2sSteriqual%20Solutions%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1794657000000";
 
 /** Live site address (no trailing slash). */
 export const siteUrl = "https://steriqualsolutions.com";

@@ -1,4 +1,4 @@
-import { company, mapLink, siteUrl, siteDescription, pharma, cleanroom, supply, team } from "../site";
+import { company, geo, mapPlaceUrl, siteUrl, siteDescription, pharma, cleanroom, supply, team } from "../site";
 
 const ORG_ID = `${siteUrl}/#organization`;
 const SITE_ID = `${siteUrl}/#website`;
@@ -54,7 +54,8 @@ export function siteGraph() {
   };
   org.email = company.email;
   org.telephone = company.phones[0];
-  org.hasMap = mapLink;
+  org.hasMap = mapPlaceUrl;
+  org.geo = { "@type": "GeoCoordinates", latitude: geo.latitude, longitude: geo.longitude };
   if (sameAs.length) org.sameAs = sameAs;
 
   return [
